@@ -45,13 +45,13 @@ public struct VideoPlayerView: UIViewRepresentable {
     @Binding private var isPlay: Bool
     @Binding private var isAutoReplay: Bool
     @Binding private var isMute: Bool
-    @Binding private var customContentMode: ContentMode
+    @Binding private var customContentMode: UIView.ContentMode
     
     private var playToEndTime: (() -> Void)?
     private var replay: (() -> Void)?
     private var stateDidChanged: ((State) -> Void)?
     
-    public init(url: Binding<URL>, isPlay: Binding<Bool>, contentMode: Binding<ContentMode>) {
+    public init(url: Binding<URL>, isPlay: Binding<Bool>, contentMode: Binding<UIView.ContentMode>) {
         _url = url
         _isPlay = isPlay
         _isAutoReplay = .constant(true)
