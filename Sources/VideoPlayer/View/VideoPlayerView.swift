@@ -95,7 +95,7 @@ public struct VideoPlayerView: UIViewRepresentable {
     
     public func makeUIView(context: Context) -> UIVideoPlayerView {
         let uiView = UIVideoPlayerView()
-        uiView.contentMode = contentMode
+        uiView.contentMode = customContentMode
         uiView.playToEndTime = { context.coordinator.playToEndTime() }
         uiView.replay = { context.coordinator.replay() }
         uiView.stateDidChanged = { context.coordinator.stateDidChanged($0) }
