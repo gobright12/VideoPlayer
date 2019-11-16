@@ -100,25 +100,16 @@ public class UIVideoPlayerView: UIView {
             }
         }
     }
-    
-    public init() {
-        super.init(frame: .zero)
-        configureInit()
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         configureInit()
     }
     
     public override func layoutSubviews() {
         super.layoutSubviews()
         guard playerLayer.superlayer == layer else { return }
-        
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
         playerLayer.frame = bounds
-        CATransaction.commit()
     }
     
 }
