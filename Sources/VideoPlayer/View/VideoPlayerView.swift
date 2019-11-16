@@ -45,16 +45,18 @@ public struct VideoPlayerView: UIViewRepresentable {
     @Binding private var isPlay: Bool
     @Binding private var isAutoReplay: Bool
     @Binding private var isMute: Bool
+    @Binding private var customContentMode: ContentMode
     
     private var playToEndTime: (() -> Void)?
     private var replay: (() -> Void)?
     private var stateDidChanged: ((State) -> Void)?
     
-    public init(url: Binding<URL>, isPlay: Binding<Bool>) {
+    public init(url: Binding<URL>, isPlay: Binding<Bool>, contentMode: Binding<ContentMode>) {
         _url = url
         _isPlay = isPlay
         _isAutoReplay = .constant(true)
         _isMute = .constant(false)
+        _customContentMode = contentMode
     }
     
     /// Whether the video will be automatically replayed until the end of the video playback.
@@ -93,6 +95,7 @@ public struct VideoPlayerView: UIViewRepresentable {
     
     public func makeUIView(context: Context) -> UIVideoPlayerView {
         let uiView = UIVideoPlayerView()
+        uiView.contentMode = customContentMode
         uiView.playToEndTime = { context.coordinator.playToEndTime() }
         uiView.replay = { context.coordinator.replay() }
         uiView.stateDidChanged = { context.coordinator.stateDidChanged($0) }
